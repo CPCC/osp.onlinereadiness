@@ -1,0 +1,34 @@
+{% block styles %}
+	<link rel="stylesheet" href="{{ MEDIA_URL }}css/onlinereadiness.css" type="text/css" />
+	{{ block.super }}
+{% endblock %}
+
+<h1>Online Readiness</h1>
+<h1 id="survey-count">assessments completed: {{ results|length }}</h1>
+{% if results|length > 0 %}
+<table id="onlinereadiness-results">
+	<thead>
+		<tr>
+			<th style="width: 25%;">Assessment</th>
+            <th style="width: 30%;">Date</th>
+            <th style="width: 15%;">Details</th>
+		</tr>
+	</thead>
+	<tbody>
+			{% for result in results %}
+				<tr id="row_{{ result.id }}" class="{% cycle "orodd" "oreven" %} assessment-row">
+			  		<td>Online Readiness</td>
+			  		<td>{{ result.date_taken }}</td>
+			  		<td><a id="link_{{ result.id }}" style="text-decoration: underline;" href="../../assessment/onlinereadiness/get/result/{{ result.id }}">Details</a></td>
+				</tr>	
+			{% endfor %}
+	</tbody>
+</table>
+<div id="details_window" class="window"></div>
+<div id="onlinereadiness-details">
+</div>
+{% else %}
+
+	<p>The student has not completed the assessment.</p>
+
+{% endif %}

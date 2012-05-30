@@ -1,0 +1,20 @@
+{% extends base_template %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ MEDIA_URL }}css/onlinereadiness.css" type="text/css" />
+{{ block.super }}
+{% endblock %}
+
+{% block body %}
+<h1>Online Readiness</h1>
+<form action="" method="POST" class="selfefficacy">
+{% csrf_token %}
+{% for item in form %}
+  <div class="onlinereadiness-field {% cycle 'orodd' 'oreven' %}">
+    <span class="onlinereadiness-question">{{ item.label }}</span>{{ item }}
+  </div>
+  {% endfor %}
+  <input type="submit" name="submit" id="id_submit" value="Submit" />
+</form>
+</div>
+{% endblock %}

@@ -31,7 +31,7 @@ def online_readiness_show_assessment(request):
                                    'answer': form.cleaned_data[item],
                                    'question_id': item})
            answers = json.dumps(answers)
-           result = models.SelfEfficacyResult(
+           result = models.OnlineReadinessResult(
                student = request.user,
                answers = answers
            )
@@ -85,6 +85,46 @@ def online_readiness_get_result(request, result_id):
     #TODO: this is self efficacy scoring - change to online readiness scoring
     total = 0
     for answer in answers:
-        total = total + float(answer['answer'])
-    score = (total / 220) * 100
-    return direct_to_template(request, 'onlinereadiness/online-readiness-result.html', {'score': score})
+        if(int('0'+answer['question_id']) == 14 ):
+            total = total + (6 - float(answer['answer']))
+        else:
+            if(int('0'+answer['question_id']) >21 and int('0'+answer['question_id']) < 28):
+                total = total + (6 - float(answer['answer']))
+            else:
+                if (int('0'+answer['question_id']) == 36 or int('0'+answer['question_id']) == 37):
+                    total = total + (6 - float(answer['answer']))
+                else:
+                    total = total + float(answer['answer'])
+    score = total
+    compTotal = 0
+    indeTotal = 0
+    depTotal = 0
+    acaTotal = 0
+    olTotal = 0
+    for answer in answers:
+        if (int('0'+answer['question_id']) < 12):
+            compTotal = compTotal + float(answer['answer'])
+        if (int('0'+answer['question_id']) < 22 and int('0'+answer['question_id']) > 11):
+            if ( int('0'+answer['question_id']) == 14 ):
+                indeTotal = indeTotal + (6 - float(answer['answer']))
+            else:
+                indeTotal = indeTotal + float(answer['answer'])
+        if (int('0'+answer['question_id']) < 28 and int('0'+answer['question_id']) > 21):
+                depTotal = depTotal + (6 - float(answer['answer']))
+        if (int('0'+answer['question_id']) < 33 and int('0'+answer['question_id']) > 27):
+            olTotal = olTotal + float(answer['answer'])
+        if (int('0'+answer['question_id']) > 32):
+            if ( int('0'+answer['question_id']) == 36 or int('0'+answer['question_id']) == 37):
+                acaTotal = acaTotal + (6 - float(answer['answer']))
+            else:
+                acaTotal = acaTotal + float(answer['answer'])
+
+    compSkills = compTotal/11
+    independant = indeTotal/10
+    dependant = depTotal/6
+    academic = acaTotal/13
+    onlineDelivery = olTotal/5
+
+    return direct_to_template(request, 'onlinereadiness/online-readiness-result.html', 
+                              {'score': score, 'compSkills': compSkills, 
+                              'independant': independant, 'dependant':dependant, 'academic': academic, 'onlineDelivery': onlineDelivery})
