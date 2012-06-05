@@ -19,14 +19,13 @@
 				<tr id="row_{{ result.id }}" class="{% cycle "orodd" "oreven" %} assessment-row">
 			  		<td>Online Readiness</td>
 			  		<td>{{ result.date_taken }}</td>
-			  		<td><a id="link_{{ result.id }}" style="text-decoration: underline;" href="../../assessment/onlinereadiness/get/result/{{ result.id }}">Details</a></td>
+			  		<td><a id="link_{{ result.id }}" class="custom_assessment_link" style="text-decoration: underline;" href="../../assessment/onlinereadiness/get/result/{{ result.id }}">Details</a></td>
 				</tr>	
 			{% endfor %}
 	</tbody>
 </table>
 <div id="details_window" class="window"></div>
-<div id="onlinereadiness-details">
-</div>
+<div id="onlinereadiness-details"></div>
 {% else %}
 
 	<p>The student has not completed the assessment.</p>

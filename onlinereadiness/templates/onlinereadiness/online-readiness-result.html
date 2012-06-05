@@ -7,6 +7,7 @@
 
 {% block body %}
 	<h1>Online Readiness</h1>
+	<div id="onlinereadiness-back" style="float: right;"><FORM><INPUT TYPE="button" VALUE="Return to Results" onClick="history.back();return true;"></FORM></div>
 	<div id="score-details">
 		<div id="onlinereadiness-score-description">
 			<h2>Your Overall Learning Success (OLS) score is: <span id="onlinereadiness-score">{{ score|floatformat:"0" }}</span></h2>
