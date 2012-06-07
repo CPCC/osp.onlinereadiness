@@ -7,7 +7,7 @@
 
 {% block body %}
 <h1>Online Readiness</h1>
-<form action="" method="POST" class="selfefficacy">
+<form action="" method="POST" class="onlinereadiness">
 {% csrf_token %}
 {% for item in form %}
   <div class="onlinereadiness-field {% cycle 'orodd' 'oreven' %}">
@@ -17,4 +17,5 @@
   <input type="submit" name="submit" id="id_submit" value="Submit" />
 </form>
 </div>
+<div id="credits" style="width: auto; text-align: center;">Created by Marcel S. Kerr, Kimberly Rynearson, and Marcus C. Kerr <br><a href="http://distance.uh.edu/online_learning.html" >University of Houston<br>Distance Education</a></div>
 {% endblock %}
