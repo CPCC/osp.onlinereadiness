@@ -10,12 +10,29 @@
 <form action="" method="POST" class="onlinereadiness">
 {% csrf_token %}
 {% for item in form %}
+	{% if form.1.label == item.label  %}
+		<div class="onlinereadiness-category" style="margin: 20px 0px;"><h3>Computer Skills</h3><hr></div>
+  	{% endif %}
+  	{% if form.12.label == item.label  %}
+		<div class="onlinereadiness-category" style="margin: 20px 0px;"><h3>Independant Learning</h3><hr></div>
+  	{% endif %}
+  	{% if form.22.label == item.label  %}
+		<div class="onlinereadiness-category" style="margin: 20px 0px;"><h3>Dependant Learning</h3><hr></div>
+  	{% endif %}
+  	{% if form.28.label == item.label  %}
+		<div class="onlinereadiness-category" style="margin: 20px 0px;"><h3>Need for Online Learning</h3><hr></div>
+  	{% endif %}
+  	{% if form.33.label == item.label  %}
+		<div class="onlinereadiness-category" style="margin: 20px 0px;"><h3>Academic Skills</h3><hr></div>
+  	{% endif %}
+
   <div class="onlinereadiness-field {% cycle 'orodd' 'oreven' %}">
     <span class="onlinereadiness-question">{{ item.label }}</span>{{ item }}
   </div>
-  {% endfor %}
+{% endfor %}
   <input type="submit" name="submit" id="id_submit" value="Submit" />
 </form>
 </div>
 <div id="credits" style="width: auto; text-align: center;">Created by Marcel S. Kerr, Kimberly Rynearson, and Marcus C. Kerr <br><a href="http://distance.uh.edu/online_learning.html" >University of Houston<br>Distance Education</a></div>
+
 {% endblock %}
