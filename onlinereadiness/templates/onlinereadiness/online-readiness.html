@@ -1,7 +1,35 @@
 {% extends base_template %}
 
 {% block styles %}
-<link rel="stylesheet" href="{{ MEDIA_URL }}css/onlinereadiness.css" type="text/css" />
+<style>
+.onlinereadiness-question
+{
+    float: left;
+    font-size: 16px;
+    padding-top: 5px;
+    padding-left: 10px;
+}
+.onlinereadiness-field ul
+{
+    list-style: none;
+    float: right;
+    padding: 0;
+    margin: 0;
+    padding-bottom: 10px;
+}
+.onlinereadiness-field li 
+{
+    float:left;
+    padding: 10px 30px;
+}
+div.onlinereadiness-field 
+{
+    margin: 0px;
+    clear:both;
+    height:50px;
+    padding: 15px 5px 10px 5px;
+}
+</style>
 {{ block.super }}
 {% endblock %}
 
@@ -26,7 +54,7 @@
 		<div class="onlinereadiness-category" style="margin: 20px 0px;"><h3>Academic Skills</h3><hr></div>
   	{% endif %}
 
-  <div class="onlinereadiness-field {% cycle 'orodd' 'oreven' %}">
+  <div class="onlinereadiness-field {% cycle 'odd' 'even' %}">
     <span class="onlinereadiness-question">{{ item.label }}</span>{{ item }}
   </div>
 {% endfor %}

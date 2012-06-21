@@ -1,6 +1,12 @@
 
 {% block styles %}
-	<link rel="stylesheet" href="{{ MEDIA_URL }}css/onlinereadiness.css" type="text/css" />
+	<style>
+	#onlinereadiness-results td
+	{
+		padding: 10px 0px;
+		text-align: center;
+	}
+	</style>
 	{{ block.super }}
 {% endblock %}
 
