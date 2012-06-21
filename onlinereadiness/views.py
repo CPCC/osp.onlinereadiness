@@ -46,6 +46,8 @@ def online_readiness_show_assessment(request):
                               'onlinereadiness/online-readiness.html',
                               {'form': form})
 
+
+
 @login_required
 def online_readiness_student_results(request, student_id):
     """
@@ -60,9 +62,18 @@ def online_readiness_student_results(request, student_id):
         raise PermissionDenied
 
     results = models.OnlineReadinessResult.objects.filter(student=student_id)
-    return direct_to_template(request,
-                              'onlinereadiness/online-readiness-student-results.html',
-                              {'results': results,})
+    
+    # return direct_to_template(request,
+    #                           'onlinereadiness/online-readiness-student-results.html',
+    #                           {'results': results,})
+
+    json_data = []
+    for result in results:
+        json_data.append({'id': result.pk,
+                          'date_taken': '%s' % result.date_taken})
+    json_data = json.dumps(json_data)
+    return HttpResponse(json_data)
+
 
 
 @login_required
@@ -82,7 +93,6 @@ def online_readiness_get_result(request, result_id):
         raise PermissionDenied
 
     answers = json.loads(result.answers)
-    #TODO: this is self efficacy scoring - change to online readiness scoring
     total = 0
     for answer in answers:
         if(int('0'+answer['question_id']) == 14 ):
