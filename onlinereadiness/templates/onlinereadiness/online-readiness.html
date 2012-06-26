@@ -29,12 +29,24 @@ div.onlinereadiness-field
     height:50px;
     padding: 15px 5px 10px 5px;
 }
+.error-message
+{
+    color: #AA0000;
+}
+
+.errors
+{
+    padding: 10px 15px;
+    background: #fcf0f0;
+    border: 1px solid #AA0000;
+}
 </style>
 {{ block.super }}
 {% endblock %}
 
 {% block body %}
 <h1>Online Readiness</h1>
+{% if form.errors %}<div class="errors"><span class="error-message">You must answer all of the questions. Please answer the highlighted questions.</span></div>{% endif %}
 <form action="" method="POST" class="onlinereadiness">
 {% csrf_token %}
 {% for item in form %}
@@ -54,8 +66,8 @@ div.onlinereadiness-field
 		<div class="onlinereadiness-category" style="margin: 30px 0px 5px 0px;"><h3>Academic Skills</h3><hr></div>
   	{% endif %}
 
-  <div class="onlinereadiness-field {% cycle 'odd' 'even' %}">
-    <span class="onlinereadiness-question">{{ item.label }}</span>{{ item }}
+  <div class="onlinereadiness-field {% cycle 'odd' 'even' %} {% if item.errors %}errors{% endif %}">
+    <span class="onlinereadiness-question {% if item.errors %}error-message{% endif %}">{{ item.label }}</span>{{ item }}
   </div>
 {% endfor %}
   <input type="submit" name="submit" id="id_submit" value="Submit" />
