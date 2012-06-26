@@ -1,0 +1,114 @@
+{% extends base_template %}
+
+{% block styles %}
+	<style>
+	#onlinereadiness-results td
+	{
+		padding: 10px 0px;
+		text-align: center;
+	}
+	#score-details table
+	{
+	    padding-top: 15px;
+	}
+	</style>
+	{{ block.super }}
+{% endblock %}
+
+{% block body %}
+	<h1>Online Readiness</h1>
+	<div id="score-details">
+		<div id="onlinereadiness-score-description">
+			<h2>Your Overall Learning Success (OLS) score is: <span id="onlinereadiness-score">{{ score|floatformat:"0" }}</span></h2>
+
+			<table id="onlinereadiness-results">
+				<thead>
+					<tr>
+						<th style="width:25%;">Computer Skills</th>
+						<th style="width:25%;">Independent Learning</th>
+						<th style="width:25%;">Dependent Learning</th>
+						<th style="width:25%;">Academic Skills</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td id="compSkills"></td>
+						<td id="independant"></td>
+						<td id="dependant"></td>
+						<td id ="academic"></td>
+					</tr>
+				</tbody>
+			</table>
+			<div id="onlinereadiness-delivery">
+				<h2>Need for Online Delivery</h2>
+				<h3>Score: {{ onlineDelivery|floatformat:"2" }}</h3>
+				<p>Unlike the other subscales, this series of items identifies a need instead of a skill. If your Need for Online Learning mean (average) is 3.40 or higher, it indicates that your lifestyle (i.e., career, family structure, personal responsibilities, distance to higher education entities) may demand the flexibility and scheduling that the online classroom can provide. Scores below 3.40 suggest that you do not have a pressing need for online delivery of instruction at this time. </p>
+			</div>
+
+			<div id="onlinereadiness-score-details">
+				<h2>Scoring Details</h2>
+				<div id="onlinereadiness-score-green">
+					<h3>Ready to Go</h3>
+					<p>Individuals who score between 202 and 225 on OLS and/or in the green zone on any given subscale are more than prepared for online learning. Scores in these ranges indicate that the individual possesses the necessary personality traits, motivation, computer skills, and academic skills that predict successful achievement in the online classroom. </p>
+				</div>
+				<div id="onlinereadiness-score-yellow">
+					<h3>Take Some Notes</h3>
+					<p>An OLS score between 190 and 201 indicates that the individual is in the top half (50th percentile) of learners. Individuals with an OLS score in this range are more prepared for online learning than 50-75 percent of their student peers. In order to increase one’s performance in the online class, she should examine her four subscale scores and Need for Online Delivery. If any subscale scores fall in the yellow, orange, or red zones, the individual should read up on the identified skills.</p>
+				</div>
+				<div id="onlinereadiness-score-orange">
+					<h3>Proceed With Caution</h3>
+					<p>Individuals who score between 178 and 189 on OLS and/or in the orange zone on any subscale are encouraged to seek additional information and assistance. OLS scores in this range indicate that the individual falls in the lower half (50th percentile) of learners. Orange zone skills suggest that the individual lacks a few skills that have been identified as predictors of online achievement. To increase one’s skills in a subscale, the individual should review the requirements of online courses carefully prior to enrollment. The individual also should review the university’s policies and minimum skill requirements often posted on their webpage. Additionally, the individual should review the online links below for additional information and consult with the distance education staff or instructors of the course/program either via e-mail or phone. Once taken, these steps will allow the learner to make an informed and confident decision regarding online course or program enrollment.</p>
+				</div>
+				<div id="onlinereadiness-score-red">
+					<h3>Additional Skills Needed</h3>
+					<p>Obtaining an OLS score between 0 and 177 suggests that the individual needs to acquire additional skills in order to succeed in the online environment. Similarly, subscale scores that fall in the red zones indicate skill deficits. These students are encouraged to enroll in face-to-face courses/programs as the online classroom may not fit one’s learning preferences and skills. However, if the individual has an identified Need for Online Delivery (i.e., score above 3.40), then the following steps are suggested.  In order to increase one’s chances of success online, 1) the individual should complete all recommendations described under the, Proceed with Caution section above. 2) The individual should access and complete the tutorials below that meet the respective deficit skill set. 3) If a Computer Skills deficiency is identified, completion of a basic computer applications course is recommended. 4) If an Academic Skills deficiency is identified, completion of an introductory English (composition and rhetoric) course is recommended), and 5) if the individual is identified as a dependent learner, one should consider using the following strategies once enrolled in an online course: Keep an electronic calendar of assignment due dates that sends audible reminders (alarms), Establish rapport with a classmate quickly and obtain her feedback on assignments prior to submitting them for grading, and Discuss the deficit area with the course instructor early to determine how impactful he/she feels it will be given the course requirements.</p>
+				</div>
+			</div>
+			<script>
+				if({{ compSkills }} < 4.15){
+					$("#compSkills").prepend('<span class="onlinereadiness-score-category-description"> Additional Skills Needed </span>');
+				}else if({{ compSkills }} < 4.63){
+					$("#compSkills").prepend('<span class="onlinereadiness-score-category-description"> Proceed With Caution </span>');
+				}else if({{ compSkills }} < 5){
+					$("#compSkills").prepend('<span class="onlinereadiness-score-category-description"> Take Some Notes </span>');
+				}else{
+					$("#compSkills").prepend('<span class="onlinereadiness-score-category-description"> Ready to Go </span>');
+				}
+
+				if({{ independant }} < 3.76){
+					$("#independant").prepend('<span class="onlinereadiness-score-category-description"> Additional Skills Needed </span>');
+				}else if({{ independant }} < 4.12){
+					$("#independant").prepend('<span class="onlinereadiness-score-category-description"> Proceed With Caution </span>');
+				}else if({{ independant }} < 4.57){
+					$("#independant").prepend('<span class="onlinereadiness-score-category-description"> Take Some Notes </span>');
+				}else{
+					$("#independant").prepend('<span class="onlinereadiness-score-category-description"> Ready to Go </span>');
+				}
+
+				if({{ dependant }} < 3.40){
+					$("#dependant").prepend('<span class="onlinereadiness-score-category-description"> Additional Skills Needed </span>');
+				}else if({{ dependant }} < 3.86){
+					$("#dependant").prepend('<span class="onlinereadiness-score-category-description"> Proceed With Caution </span>');
+				}else if({{ dependant }} < 4.32){
+					$("#dependant").prepend('<span class="onlinereadiness-score-category-description"> Take Some Notes </span>');
+				}else{
+					$("#dependant").prepend('<span class="onlinereadiness-score-category-description"> Ready to Go </span>');
+				}
+
+				if({{ academic }} < 3.59){
+					$("#academic").prepend('<span class="onlinereadiness-score-category-description"> Additional Skills Needed </span>');
+				}else if({{ academic }} < 3.85){
+					$("#academic").prepend('<span class="onlinereadiness-score-category-description"> Proceed With Caution </span>');
+				}else if({{ academic }} < 4.14){
+					$("#academic").prepend('<span class="onlinereadiness-score-category-description"> Take Some Notes </span>');
+				}else{
+					$("#academic").prepend('<span class="onlinereadiness-score-category-description"> Ready to Go </span>');
+				}
+
+
+			</script>
+		</div>
+	</div>
+
+	<div id="credits" style="width: auto; text-align: center;">Created by Marcel S. Kerr, Kimberly Rynearson, and Marcus C. Kerr <br><a href="http://distance.uh.edu/online_learning.html" >University of Houston<br>Distance Education</a></div>
+{% endblock %}
