@@ -38,7 +38,7 @@ def online_readiness_show_assessment(request):
            result.save()
            # Display the results of the assessment based on the student's
            # responses (or a message indicating successful submission, etc.).
-           return redirect('assessment:online-readiness-get-result',
+           return redirect('assessment:online-readiness-get-result-initial',
                    result_id=result.pk)
     else:
        form = forms.OnlineReadinessForm()
@@ -77,7 +77,7 @@ def online_readiness_student_results(request, student_id):
 
 
 @login_required
-def online_readiness_get_result(request, result_id):
+def online_readiness_get_result(request, result_id, is_initial=False):
     """
         Retrieves the specified assessment result record, scores it,
         and displays the outcome.
@@ -135,6 +135,11 @@ def online_readiness_get_result(request, result_id):
     academic = acaTotal/13
     onlineDelivery = olTotal/5
 
+    if is_initial:
+        return direct_to_template(request, 'onlinereadiness/online-readiness-result-nav.html', 
+                              {'score': score, 'compSkills': compSkills, 
+                              'independant': independant, 'dependant':dependant, 'academic': academic, 'onlineDelivery': onlineDelivery})
     return direct_to_template(request, 'onlinereadiness/online-readiness-result.html', 
                               {'score': score, 'compSkills': compSkills, 
                               'independant': independant, 'dependant':dependant, 'academic': academic, 'onlineDelivery': onlineDelivery})
+
