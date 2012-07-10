@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name = 'onlinereadiness',
-    version = '1.0.0',
+    version = '1.0.1',
     author = 'Central Piedmont Community College',
     description = ('Assessment used to determine student readiness for online classes.'),
     packages = find_packages(),
