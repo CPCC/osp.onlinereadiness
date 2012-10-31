@@ -48,30 +48,61 @@
 			<!-- <h3>Score: <span id="onlinereadiness-score">{{ score|floatformat:"0" }}</span></h3> -->
 
 			<div id="onlinereadiness-score-details">
-				<div id="onlinereadiness-score-green" style="display: none;">
-					<div class="onlinereadiness-score-description green">Ready to Go</div>
-					<!-- <p>Individuals who score between 202 and 225 on OLS and/or in the green zone on any given subscale are more than prepared for online learning. Scores in these ranges indicate that the individual possesses the necessary personality traits, motivation, computer skills, and academic skills that predict successful achievement in the online classroom. </p> -->
-					<p>Congratulations! You possesses the necessary personality traits, motivation, computer skills, and academic skills that predict successful achievement in the online classroom.</p>
-				</div>
-				<div id="onlinereadiness-score-yellow" style="display: none;">
-					<div class="onlinereadiness-score-description yellow">Take Some Notes</div>
-					<!-- <p>An OLS score between 190 and 201 indicates that the individual is in the top half (50th percentile) of learners. Individuals with an OLS score in this range are more prepared for online learning than 50-75 percent of their student peers. In order to increase one’s performance in the online class, she should examine her four subscale scores and Need for Online Delivery. If any subscale scores fall in the yellow, orange, or red zones, the individual should read up on the identified skills.</p> -->
-					<p>You are more prepared for online learning than most students.</p>
-					<p>To improve your chances of success in online learning, you may want to improve your: </p>
-					<div id="yellow-subscale-scores"></div>
-				</div>
-				<div id="onlinereadiness-score-orange" style="display: none;">
-					<div class="onlinereadiness-score-description orange">Proceed With Caution</div>
-					<!-- <p>Individuals who score between 178 and 189 on OLS and/or in the orange zone on any subscale are encouraged to seek additional information and assistance. OLS scores in this range indicate that the individual falls in the lower half (50th percentile) of learners. Orange zone skills suggest that the individual lacks a few skills that have been identified as predictors of online achievement. To increase one’s skills in a subscale, the individual should review the requirements of online courses carefully prior to enrollment. The individual also should review the university’s policies and minimum skill requirements often posted on their webpage. Additionally, the individual should review the online links below for additional information and consult with the distance education staff or instructors of the course/program either via e-mail or phone. Once taken, these steps will allow the learner to make an informed and confident decision regarding online course or program enrollment.</p> -->
-					<p>You should probably seek additional information and assistance. You appear to lack some skills that have been identified as predictors of online achievement. Review the requirements of online courses carefully prior to enrollment. Consider contacting College distance education staff or instructors of the course/program. These steps will help you make an informed and confident decision regarding online course or program enrollment.</p>
-					<p>To improve your chances of success in online learning, you may want to improve your: </p>
-					<div id="orange-subscale-scores"></div>
-				</div>
-				<div id="onlinereadiness-score-red" style="display: none;">
-					<div class="onlinereadiness-score-description red">Additional Skills Needed</div>
-					<!-- <p>Obtaining an OLS score between 0 and 177 suggests that the individual needs to acquire additional skills in order to succeed in the online environment. Similarly, subscale scores that fall in the red zones indicate skill deficits. These students are encouraged to enroll in face-to-face courses/programs as the online classroom may not fit one’s learning preferences and skills. However, if the individual has an identified Need for Online Delivery (i.e., score above 3.40), then the following steps are suggested.  In order to increase one’s chances of success online, 1) the individual should complete all recommendations described under the, Proceed with Caution section above. 2) The individual should access and complete the tutorials below that meet the respective deficit skill set. 3) If a Computer Skills deficiency is identified, completion of a basic computer applications course is recommended. 4) If an Academic Skills deficiency is identified, completion of an introductory English (composition and rhetoric) course is recommended), and 5) if the individual is identified as a dependent learner, one should consider using the following strategies once enrolled in an online course: Keep an electronic calendar of assignment due dates that sends audible reminders (alarms), Establish rapport with a classmate quickly and obtain her feedback on assignments prior to submitting them for grading, and Discuss the deficit area with the course instructor early to determine how impactful he/she feels it will be given the course requirements.</p> -->
-					<p>You need to acquire additional skills in order to succeed in the online environment. Face-to-face courses/programs may be a better option, as the online classroom may not fit your learning preferences and skills.</p>
-				</div>
+				{% if score < 178 %}
+					<div id="onlinereadiness-score-red">
+						<div class="onlinereadiness-score-description red">Additional Skills Needed</div>
+						<!-- <p>Obtaining an OLS score between 0 and 177 suggests that the individual needs to acquire additional skills in order to succeed in the online environment. Similarly, subscale scores that fall in the red zones indicate skill deficits. These students are encouraged to enroll in face-to-face courses/programs as the online classroom may not fit one’s learning preferences and skills. However, if the individual has an identified Need for Online Delivery (i.e., score above 3.40), then the following steps are suggested.  In order to increase one’s chances of success online, 1) the individual should complete all recommendations described under the, Proceed with Caution section above. 2) The individual should access and complete the tutorials below that meet the respective deficit skill set. 3) If a Computer Skills deficiency is identified, completion of a basic computer applications course is recommended. 4) If an Academic Skills deficiency is identified, completion of an introductory English (composition and rhetoric) course is recommended), and 5) if the individual is identified as a dependent learner, one should consider using the following strategies once enrolled in an online course: Keep an electronic calendar of assignment due dates that sends audible reminders (alarms), Establish rapport with a classmate quickly and obtain her feedback on assignments prior to submitting them for grading, and Discuss the deficit area with the course instructor early to determine how impactful he/she feels it will be given the course requirements.</p> -->
+						<p>You need to acquire additional skills in order to succeed in the online environment. Face-to-face courses/programs may be a better option, as the online classroom may not fit your learning preferences and skills.</p>
+					</div>
+				{% else %}{% if score < 190 %}
+					<div id="onlinereadiness-score-orange">
+						<div class="onlinereadiness-score-description orange">Proceed With Caution</div>
+						<!-- <p>Individuals who score between 178 and 189 on OLS and/or in the orange zone on any subscale are encouraged to seek additional information and assistance. OLS scores in this range indicate that the individual falls in the lower half (50th percentile) of learners. Orange zone skills suggest that the individual lacks a few skills that have been identified as predictors of online achievement. To increase one’s skills in a subscale, the individual should review the requirements of online courses carefully prior to enrollment. The individual also should review the university’s policies and minimum skill requirements often posted on their webpage. Additionally, the individual should review the online links below for additional information and consult with the distance education staff or instructors of the course/program either via e-mail or phone. Once taken, these steps will allow the learner to make an informed and confident decision regarding online course or program enrollment.</p> -->
+						<p>You should probably seek additional information and assistance. You appear to lack some skills that have been identified as predictors of online achievement. Review the requirements of online courses carefully prior to enrollment. Consider contacting College distance education staff or instructors of the course/program. These steps will help you make an informed and confident decision regarding online course or program enrollment.</p>
+						<p>To improve your chances of success in online learning, you may want to improve your: </p>
+						<div id="orange-subscale-scores">
+							{% if compSkills < 5 %}
+								<span class='sub-scale'> Computer Skills </span>
+							{% endif %}
+							{% if independant < 4.57 %}
+								<span class='sub-scale'> Independant Learning </span>
+							{% endif %}
+							{% if dependant < 4.32 %}
+								<span class='sub-scale'> Dependant Learning </span>
+							{% endif %}
+							{% if academic < 4.14 %}
+								<span class='sub-scale'> Academic Skills </span>
+							{% endif %}
+						</div>
+					</div>
+				{% else %}{% if score < 202 %}
+					<div id="onlinereadiness-score-yellow">
+						<div class="onlinereadiness-score-description yellow">Take Some Notes</div>
+						<!-- <p>An OLS score between 190 and 201 indicates that the individual is in the top half (50th percentile) of learners. Individuals with an OLS score in this range are more prepared for online learning than 50-75 percent of their student peers. In order to increase one’s performance in the online class, she should examine her four subscale scores and Need for Online Delivery. If any subscale scores fall in the yellow, orange, or red zones, the individual should read up on the identified skills.</p> -->
+						<p>You are more prepared for online learning than most students.</p>
+						<p>To improve your chances of success in online learning, you may want to improve your: </p>
+						<div id="yellow-subscale-scores">
+							{% if compSkills < 5 %}
+								<span class='sub-scale'> Computer Skills </span>
+							{% endif %}
+							{% if independant < 4.57 %}
+								<span class='sub-scale'> Independant Learning </span>
+							{% endif %}
+							{% if dependant < 4.32 %}
+								<span class='sub-scale'> Dependant Learning </span>
+							{% endif %}
+							{% if academic < 4.14 %}
+								<span class='sub-scale'> Academic Skills </span>
+							{% endif %}
+						</div>
+					</div>
+				{% else %}
+					<div id="onlinereadiness-score-green">
+						<div class="onlinereadiness-score-description green">Ready to Go</div>
+						<!-- <p>Individuals who score between 202 and 225 on OLS and/or in the green zone on any given subscale are more than prepared for online learning. Scores in these ranges indicate that the individual possesses the necessary personality traits, motivation, computer skills, and academic skills that predict successful achievement in the online classroom. </p> -->
+						<p>Congratulations! You possesses the necessary personality traits, motivation, computer skills, and academic skills that predict successful achievement in the online classroom.</p>
+					</div>
+				{% endif %}{% endif %}{% endif %}
 			</div>
 
 			<table id="onlinereadiness-results">
@@ -85,10 +116,106 @@
 				</thead>
 				<tbody>
 					<tr>
-						<td id="compSkills"></td>
-						<td id="independant"></td>
-						<td id="dependant"></td>
-						<td id ="academic"></td>
+						<td id="compSkills" 
+							{% if compSkills < 4.15 %}
+								class="red" title="0% - 25%"
+								{% else %}{% if compSkills < 4.63 %}
+									class="orange" title="25% - 50%"
+									{% else %}{% if compSkills < 5 %}
+										class="yellow" title="50% - 75%"
+										{% else %}
+											class="green" title="75% - 100%"
+									{% endif %}
+								{% endif %}
+							 {% endif %}>
+
+							{% if compSkills < 4.15 %}
+								<div class="onlinereadiness-score-category-description"> Additional Skills Needed </div>
+								{% else %}{% if compSkills < 4.63 %}
+									<div class="onlinereadiness-score-category-description"> Proceed With Caution </div>
+									{% else %}{% if compSkills < 5 %}
+										<div class="onlinereadiness-score-category-description"> Take Some Notes </div>
+										{% else %}
+											<div class="onlinereadiness-score-category-description"> Ready to Go </div>
+									{% endif %}
+								{% endif %}
+							 {% endif %}
+						</td>
+						<td id="independant"
+							{% if independant < 3.76 %}
+								class="red" title="0% - 25%"
+								{% else %}{% if independant < 4.12 %}
+									class="orange" title="25% - 50%"
+									{% else %}{% if independant < 4.57 %}
+										class="yellow" title="50% - 75%"
+										{% else %}
+											class="green" title="75% - 100%"
+									{% endif %}
+								{% endif %}
+							 {% endif %}>
+
+							{% if independant < 3.76 %}
+								<div class="onlinereadiness-score-category-description"> Additional Skills Needed </div>
+								{% else %}{% if independant < 4.12 %}
+									<div class="onlinereadiness-score-category-description"> Proceed With Caution </div>
+									{% else %}{% if independant < 4.57 %}
+										<div class="onlinereadiness-score-category-description"> Take Some Notes </div>
+										{% else %}
+											<div class="onlinereadiness-score-category-description"> Ready to Go </div>
+									{% endif %}
+								{% endif %}
+							 {% endif %}
+						</td>
+						<td id="dependant"
+							{% if dependant < 3.4 %}
+								class="red" title="0% - 25%"
+								{% else %}{% if dependant < 3.86 %}
+									class="orange" title="25% - 50%"
+									{% else %}{% if dependant < 4.32 %}
+										class="yellow" title="50% - 75%"
+										{% else %}
+											class="green" title="75% - 100%"
+									{% endif %}
+								{% endif %}
+							 {% endif %}>
+
+							{% if dependant < 3.4 %}
+								<div class="onlinereadiness-score-category-description"> Additional Skills Needed </div>
+								{% else %}{% if dependant < 3.86 %}
+									<div class="onlinereadiness-score-category-description"> Proceed With Caution </div>
+									{% else %}{% if dependant < 4.32 %}
+										<div class="onlinereadiness-score-category-description"> Take Some Notes </div>
+										{% else %}
+											<div class="onlinereadiness-score-category-description"> Ready to Go </div>
+									{% endif %}
+								{% endif %}
+							 {% endif %}
+						</td>
+						<td id ="academic"
+							{% if academic < 3.59 %}
+								class="red" title="0% - 25%"
+								{% else %}{% if academic < 3.85 %}
+									class="orange" title="25% - 50%"
+									{% else %}{% if academic < 4.14 %}
+										class="yellow" title="50% - 75%"
+										{% else %}
+											class="green" title="75% - 100%"
+									{% endif %}
+								{% endif %}
+							 {% endif %}>
+
+							{% if academic < 3.59 %}
+								<div class="onlinereadiness-score-category-description"> Additional Skills Needed </div>
+								{% else %}{% if academic < 3.85 %}
+									<div class="onlinereadiness-score-category-description"> Proceed With Caution </div>
+									{% else %}{% if academic < 4.14 %}
+										<div class="onlinereadiness-score-category-description"> Take Some Notes </div>
+										{% else %}
+											<div class="onlinereadiness-score-category-description"> Ready to Go </div>
+									{% endif %}
+								{% endif %}
+							 {% endif %}
+						</td>
 					</tr>
 				</tbody>
 			</table>
@@ -97,137 +224,33 @@
 				<h2>Need for Online Delivery</h2>
 				<!-- <h3>Score: {{ onlineDelivery|floatformat:"2" }}</h3> -->
 				<!-- <p>Unlike the other subscales, this series of items identifies a need instead of a skill. If your Need for Online Learning mean (average) is 3.40 or higher, it indicates that your lifestyle (i.e., career, family structure, personal responsibilities, distance to higher education entities) may demand the flexibility and scheduling that the online classroom can provide. Scores below 3.40 suggest that you do not have a pressing need for online delivery of instruction at this time. </p> -->
-				<div id="onlinereadiness-delivery-go" style="display: none;"><p>Your lifestyle (i.e., career, family structure, personal responsibilities, distance to higher education entities) may demand the flexibility and scheduling that the online classroom can provide.</p>
-					<div id="onlinereadiness-delivery-suggestions" style="display: none;"><h3>Before being successful in an online learning environment, it is recomended that you:</div>
+				{% if onlineDelivery >= 3.4%}
+				<div id="onlinereadiness-delivery-go">
+					<p>Your lifestyle (i.e., career, family structure, personal responsibilities, distance to higher education entities) may demand the flexibility and scheduling that the online classroom can provide.</p>
+					{% if dependant < 3.4 or independant < 3.76 or compSkills < 4.15 or academic < 3.59 %}
+					<div id="onlinereadiness-delivery-suggestions">
+						<h3>Before being successful in an online learning environment, it is recomended that you:</h3>
+						{% if compSkills < 4.15 %}
+							<p class='onlinereadiness-suggestions'>Complete a basic computer applications course.</p>
+						{% endif %}
+						{% if academic < 3.59 %}
+							<p class='onlinereadiness-suggestions'>Complete an introductory English (composition and rhetoric) course.</p>
+						{% endif %}
+						{% if dependant < 3.4 or independant < 3.76 %}
+						<p class='onlinereadiness-suggestions'>Consider using the following strategies once enrolled in an online course:</p>
+						<ul>
+							<li>Keep an electronic calendar of assignment due dates that sends audible reminders (alarms)</li>
+							<li>Establish rapport with a classmate quickly and obtain her feedback on assignments prior to submitting them for grading</li>
+							<li>Discuss the deficit area with the course instructor early to determine how impactful he/she feels it will be given the course requirements.</li>
+						</ul>
+						{% endif %}
+					</div>
+					{% endif %}
 				</div>
-				<p id="onlinereadiness-delivery-nogo" style="display: none;">You do not have a pressing need for online delivery of instruction at this time.</p>
+				{% else %}
+				<p id="onlinereadiness-delivery-nogo">You do not have a pressing need for online delivery of instruction at this time.</p>
+				{% endif %}
 			</div>
-
-
-			<script>
-
-				if({{ onlineDelivery }} < 3.4){
-					$("#onlinereadiness-delivery-nogo").show();
-				}else{
-					$("#onlinereadiness-delivery-go").show();
-				}
-
-				if({{ score }} < 178 ){
-					$("#onlinereadiness-score-red").show();
-				}else if({{ score }} < 190){
-					$("3onlinereadiness-score-orange").show();
-				}else if({{ score }} < 202 ){
-					$("#onlinereadiness-score-yellow").show();
-				}else{
-					$("#onlinereadiness-score-green").show();
-				}
-
-				if({{ compSkills }} < 4.15){
-					$("#compSkills").prepend('<div class="onlinereadiness-score-category-description"> Additional Skills Needed </div>');
-					$("#compSkills").addClass("red");
-					$("#compSkills").attr("title","0% - 25%");
-					$("#yellow-subscale-scores").append("<span class='sub-scale'> Computer Skills </span>");
-					$("#orange-subscale-scores").append("<span class='sub-scale'> Computer Skills </span>");
-					$("#onlinereadiness-delivery-suggestions").append("<p class='onlinereadiness-suggestions'>Complete a basic computer applications course.</p>");
-					$("#onlinereadiness-delivery-suggestions").show();
-				}else if({{ compSkills }} < 4.63){
-					$("#compSkills").prepend('<div class="onlinereadiness-score-category-description"> Proceed With Caution </div>');
-					$("#compSkills").addClass("orange");
-					$("#compSkills").attr("title","25% - 50%");
-					$("#yellow-subscale-scores").append("<span class='sub-scale'> Computer Skills </span>");
-					$("#orange-subscale-scores").append("<span class='sub-scale'> Computer Skills </span>");
-				}else if({{ compSkills }} < 5){
-					$("#compSkills").prepend('<div class="onlinereadiness-score-category-description"> Take Some Notes </div>');
-					$("#compSkills").addClass("yellow");
-					$("#compSkills").attr("title","50% - 75%");
-					$("#yellow-subscale-scores").append("<span class='sub-scale'> Computer Skills </span>");
-					$("#orange-subscale-scores").append("<span class='sub-scale'> Computer Skills </span>");
-				}else{
-					$("#compSkills").prepend('<div class="onlinereadiness-score-category-description"> Ready to Go </div>');
-					$("#compSkills").addClass("green");
-					$("#compSkills").attr("title","75% - 100%");
-				}
-
-				if({{ independant }} < 3.76){
-					$("#independant").prepend('<div class="onlinereadiness-score-category-description"> Additional Skills Needed </div>');
-					$("#independant").addClass("red");
-					$("#independant").attr("title","0% - 25%");
-					$("#yellow-subscale-scores").append("<span class='sub-scale'> Independant Learning </span>");
-					$("#orange-subscale-scores").append("<span class='sub-scale'> Independant Learning </span>");
-				}else if({{ independant }} < 4.12){
-					$("#independant").prepend('<div class="onlinereadiness-score-category-description"> Proceed With Caution </div>');
-					$("#independant").addClass("orange");
-					$("#independant").attr("title","25% - 50%");
-					$("#yellow-subscale-scores").append("<span class='sub-scale'> Independant Learning </span>");
-					$("#orange-subscale-scores").append("<span class='sub-scale'> Independant Learning </span>");
-				}else if({{ independant }} < 4.57){
-					$("#independant").prepend('<div class="onlinereadiness-score-category-description"> Take Some Notes </div>');
-					$("#independant").addClass("yellow");
-					$("#independant").attr("title","50% - 75%");
-					$("#yellow-subscale-scores").append("<span class='sub-scale'> Independant Learning </span>");
-					$("#orange-subscale-scores").append("<span class='sub-scale'> Independant Learning </span>");
-				}else{
-					$("#independant").prepend('<div class="onlinereadiness-score-category-description"> Ready to Go </div>');
-					$("#independant").addClass("green");
-					$("#independant").attr("title","75% - 100%");
-				}
-
-				if({{ dependant }} < 3.40){
-					$("#dependant").prepend('<div class="onlinereadiness-score-category-description"> Additional Skills Needed </div>');
-					$("#dependant").addClass("red");
-					$("#dependant").attr("title","0% - 25%");
-					$("#yellow-subscale-scores").append("<span class='sub-scale'> Dependant Learning </span>");
-					$("#orange-subscale-scores").append("<span class='sub-scale'> Dependant Learning </span>");
-				}else if({{ dependant }} < 3.86){
-					$("#dependant").prepend('<div class="onlinereadiness-score-category-description"> Proceed With Caution </div>');
-					$("#dependant").addClass("orange");
-					$("#dependant").attr("title","25% - 50%");
-					$("#yellow-subscale-scores").append("<span class='sub-scale'> Dependant Learning </span>");
-					$("#orange-subscale-scores").append("<span class='sub-scale'> Dependant Learning </span>");
-				}else if({{ dependant }} < 4.32){
-					$("#dependant").prepend('<div class="onlinereadiness-score-category-description"> Take Some Notes </div>');
-					$("#dependant").addClass("yellow");
-					$("#dependant").attr("title","50% - 75%");
-					$("#yellow-subscale-scores").append("<span class='sub-scale'> Dependant Learning </span>");
-					$("#orange-subscale-scores").append("<span class='sub-scale'> Dependant Learning </span>");
-				}else{
-					$("#dependant").prepend('<div class="onlinereadiness-score-category-description"> Ready to Go </div>');
-					$("#dependant").addClass("green");
-					$("#dependant").attr("title","75% - 100%");
-				}
-
-				if({{ academic }} < 3.59){
-					$("#academic").prepend('<div class="onlinereadiness-score-category-description"> Additional Skills Needed </div>');
-					$("#academic").addClass("red");
-					$("#academic").attr("title","0% - 25%");
-					$("#yellow-subscale-scores").append("<span class='sub-scale'> Academic Skills </span>");
-					$("#orange-subscale-scores").append("<span class='sub-scale'> Academic Skills </span>");
-					$("#onlinereadiness-delivery-suggestions").append("<p class='onlinereadiness-suggestions'>Complete an introductory English (composition and rhetoric) course.</p>");
-					$("#onlinereadiness-delivery-suggestions").show();
-				}else if({{ academic }} < 3.85){
-					$("#academic").prepend('<div class="onlinereadiness-score-category-description"> Proceed With Caution </div>');
-					$("#academic").addClass("orange");
-					$("#academic").attr("title","25% - 50%");
-					$("#yellow-subscale-scores").append("<span class='sub-scale'> Academic Skills </span>");
-					$("#orange-subscale-scores").append("<span class='sub-scale'> Academic Skills </span>");
-				}else if({{ academic }} < 4.14){
-					$("#academic").prepend('<div class="onlinereadiness-score-category-description"> Take Some Notes </div>');
-					$("#academic").addClass("yellow");
-					$("#academic").attr("title","50% - 75%");
-					$("#yellow-subscale-scores").append("<span class='sub-scale'> Academic Skills </span>");
-					$("#orange-subscale-scores").append("<span class='sub-scale'> Academic Skills </span>");
-				}else{
-					$("#academic").prepend('<div class="onlinereadiness-score-category-description"> Ready to Go </div>');
-					$("#academic").addClass("green");
-					$("#academic").attr("title","75% - 100%");
-				}
-
-				if({{ dependant }} < 3.4 || {{ independant }} < 3.76){
-					$("#onlinereadiness-delivery-suggestions").append("<p class='onlinereadiness-suggestions'>Consider using the following strategies once enrolled in an online course:</p><ul><li>Keep an electronic calendar of assignment due dates that sends audible reminders (alarms)</li><li>Establish rapport with a classmate quickly and obtain her feedback on assignments prior to submitting them for grading</li><li>Discuss the deficit area with the course instructor early to determine how impactful he/she feels it will be given the course requirements.</li></ul>");
-					$("#onlinereadiness-delivery-suggestions").show();
-				}
-
-			</script>
 		</div>
 	</div>
 
