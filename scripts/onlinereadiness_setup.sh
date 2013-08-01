@@ -21,6 +21,8 @@ then
     if [ -d "/opt/virtualenv/osp" ]
     then
         # OSP is installed in a virtualenv
+        export WORKON_HOME=/opt/virtualenv
+        source /usr/local/bin/virtualenvwrapper.sh
         workon osp
     fi
 
@@ -64,6 +66,7 @@ then
     if [ $UPDATE_DATABASE == "y" ]
     then
         # Run south migration to install new tables.
+        export PYTHONPATH=$PYTHONPATH:/opt/wsgi:/opt/django/osp
         django-admin.py migrate onlinereadiness --settings=osp_settings
     fi
  fi
