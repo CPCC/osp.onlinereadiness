@@ -11,7 +11,7 @@ OSP is presently available at http://code.google.com/p/osp/.
 To install the online readiness assessment, clone the repository
 and then run the setup script::
 
-    cd onlinereadiness
+    cd osp.onlinereadiness
     ./scripts/onlinereadiness_setup.sh
 
 
